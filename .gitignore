@@ -1,0 +1,29 @@
+# === MAVEN / BUILD / IDE ===
+target/
+.idea/
+*.iml
+*.log
+
+# === SYSTEM DIRS to ignore ===
+.m2/
+.cache/
+.docker/
+AppData/
+Documents/
+Desktop/
+Downloads/
+Temp/
+Thumbs.db
+.DS_Store
+
+# === OS / TOOLING ===
+*.class
+*.jar
+*.war
+*.ear
+*.swp
+*.bak
+
+# === Git ===
+.gitignore
+*.orig
