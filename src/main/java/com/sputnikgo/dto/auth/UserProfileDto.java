@@ -1,4 +1,4 @@
 package com.sputnikgo.dto.auth;
 
-public class InviteCodeRequest {
+public class UserProfileDto {
 }
