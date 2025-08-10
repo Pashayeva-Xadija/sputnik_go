@@ -1,4 +1,4 @@
 package com.sputnikgo.repository;
 
-public class VehicleRepository {
+public interface VehicleRepository {
 }

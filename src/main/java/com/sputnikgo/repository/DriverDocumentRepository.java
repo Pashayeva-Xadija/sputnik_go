@@ -1,4 +1,4 @@
 package com.sputnikgo.repository;
 
-public class DriverDocumentRepository {
+public interface DriverDocumentRepository {
 }
