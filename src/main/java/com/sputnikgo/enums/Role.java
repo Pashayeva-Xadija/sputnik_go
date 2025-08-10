@@ -1,4 +1,7 @@
 package com.sputnikgo.enums;
 
-public class Role {
+public enum Role {
+    USER,
+    DRIVER,
+    ADMIN
 }

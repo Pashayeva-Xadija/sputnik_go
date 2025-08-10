@@ -1,4 +1,10 @@
 package com.sputnikgo.repository;
 
-public interface ScheduledTripRepository {
+import com.sputnikgo.model.trip.ScheduledTrip;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface ScheduledTripRepository extends JpaRepository<ScheduledTrip, Long> {
+    List<ScheduledTrip> findAllByPassengerIdAndActiveTrueOrderByScheduledForAsc(Long passengerId);
 }

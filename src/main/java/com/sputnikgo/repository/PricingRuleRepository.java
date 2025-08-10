@@ -1,4 +1,6 @@
 package com.sputnikgo.repository;
 
-public interface PricingRuleRepository {
-}
+import com.sputnikgo.model.pricing.PricingRule;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PricingRuleRepository extends JpaRepository<PricingRule, Long> { }

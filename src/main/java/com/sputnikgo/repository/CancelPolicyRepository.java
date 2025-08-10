@@ -1,4 +1,6 @@
 package com.sputnikgo.repository;
 
-public interface CancelPolicyRepository {
-}
+import com.sputnikgo.model.pricing.CancelPolicy;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CancelPolicyRepository extends JpaRepository<CancelPolicy, Long> { }

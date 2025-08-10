@@ -1,4 +1,5 @@
 package com.sputnikgo.enums;
 
-public class Language {
+public enum Language {
+    AZ, RU, EN
 }

@@ -1,4 +1,7 @@
 package com.sputnikgo.enums;
 
-public class PaymentType {
+public enum PaymentType {
+    CASH,
+    CARD,
+    GOOGLE_PAY
 }

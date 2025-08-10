@@ -1,4 +1,5 @@
 package com.sputnikgo.enums;
 
-public class DriverStatus {
+public enum DriverStatus {
+    ONLINE, OFFLINE, BUSY
 }
