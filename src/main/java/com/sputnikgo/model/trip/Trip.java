@@ -2,6 +2,7 @@ package com.sputnikgo.model.trip;
 
 
 import com.sputnikgo.enums.TripStatus;
+import com.sputnikgo.enums.VehicleCategoryCode;
 import com.sputnikgo.model.driver.Driver;
 import com.sputnikgo.model.user.User;
 import jakarta.persistence.*;
@@ -49,6 +50,16 @@ public class Trip {
 
     private OffsetDateTime startedAt;
     private OffsetDateTime completedAt;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private VehicleCategoryCode category;
+
+    @Column(length = 100)
+    private String riderName;
+
+    @Column(length = 32)
+    private String riderPhone;
 }
 
 

@@ -1,6 +1,7 @@
 package com.sputnikgo.model.payment;
 
 
+import com.sputnikgo.enums.CardStatus;
 import com.sputnikgo.model.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -31,4 +32,16 @@ public class PaymentCard {
 
     @Column(nullable = false, length = 64, unique = true)
     private String token;
+
+    @Column(length = 16)
+    private String brand;
+
+    @Column(name = "is_default", nullable = false)
+    private Boolean isDefault = false;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private CardStatus status = CardStatus.PENDING;
+
+    private java.time.OffsetDateTime verifiedAt;
 }

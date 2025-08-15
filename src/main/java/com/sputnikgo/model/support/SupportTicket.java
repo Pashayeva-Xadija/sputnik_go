@@ -1,6 +1,7 @@
 package com.sputnikgo.model.support;
 
 
+import com.sputnikgo.enums.SupportStatus;
 import com.sputnikgo.model.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -28,8 +29,9 @@ public class SupportTicket {
     @Column(nullable = false, length = 160)
     private String subject;
 
-    @Column(nullable = false, length = 32)
-    private String status = "OPEN";
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 16)
+    private SupportStatus status = SupportStatus.OPEN;
 
     @Column(nullable = false)
     private OffsetDateTime createdAt = OffsetDateTime.now();

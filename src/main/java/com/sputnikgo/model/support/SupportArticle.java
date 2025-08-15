@@ -1,6 +1,7 @@
 package com.sputnikgo.model.support;
 
 
+import com.sputnikgo.enums.ArticleCategory;
 import com.sputnikgo.enums.Language;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -32,4 +33,11 @@ public class SupportArticle {
 
     @Column(nullable = false)
     private Boolean published = true;
+
+    @Column(length = 80, unique = true)
+    private String slug;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private ArticleCategory category = ArticleCategory.GUIDE;
 }

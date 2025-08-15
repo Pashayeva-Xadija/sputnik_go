@@ -17,7 +17,7 @@ public class PaymentMethod {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 32)
+    @Column(nullable = false, length = 32,unique = true)
     private String code;
 
     @Column(nullable = false, length = 64)

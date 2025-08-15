@@ -33,4 +33,8 @@ public class Refund {
 
     @Column(nullable = false)
     private OffsetDateTime createdAt = OffsetDateTime.now();
+
+    @ManyToOne
+    @JoinColumn(name = "card_id")
+    private PaymentCard card;
 }

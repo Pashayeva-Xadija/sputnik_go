@@ -11,5 +11,5 @@ public class ReceiptDto {
     private Long paymentId;
     private BigDecimal amount;
     private OffsetDateTime issuedAt;
-    private String url; // Qəbz faylının linki
+    private String url;
 }

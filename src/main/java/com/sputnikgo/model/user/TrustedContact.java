@@ -1,6 +1,7 @@
 package com.sputnikgo.model.user;
 
 import com.sputnikgo.enums.ContactCategory;
+import com.sputnikgo.enums.Language;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,4 +32,8 @@ public class TrustedContact {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ContactCategory category;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "language", length = 5)
+    private Language language;
 }
