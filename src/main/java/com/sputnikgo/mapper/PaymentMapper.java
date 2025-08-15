@@ -15,11 +15,13 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring")
 public interface PaymentMapper {
 
-    @Mapping(target = "id",        source = "id")
-    @Mapping(target = "brand",     source = "brand")
-    @Mapping(target = "last4",     source = "last4")
-    @Mapping(target = "isDefault", source = "isDefault")
-    @Mapping(target = "status",    source = "status")
+    @Mappings({
+            @Mapping(target = "id",        source = "id"),
+            @Mapping(target = "brand",     source = "brand"),
+            @Mapping(target = "last4",     source = "last4"),
+            @Mapping(target = "default",   source = "isDefault"), // <-- DƏYİŞİKLİK
+            @Mapping(target = "status",    source = "status")
+    })
     PaymentCardDto toDto(PaymentCard entity);
 
     PaymentMethodDto toDto(PaymentMethod entity);
