@@ -47,5 +47,10 @@ public class User {
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Profile profile;
+
+    @Column(nullable = false)
+    private Boolean deleted = false;
+
+    private java.time.OffsetDateTime deletedAt;
 }
 

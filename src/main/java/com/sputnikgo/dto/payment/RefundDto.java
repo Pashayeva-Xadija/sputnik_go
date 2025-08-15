@@ -1,6 +1,6 @@
 package com.sputnikgo.dto.payment;
 
-import jdk.jfr.DataAmount;
+
 import lombok.Data;
 
 import java.math.BigDecimal;

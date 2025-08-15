@@ -1,4 +1,4 @@
 package com.sputnikgo.controller;
 
-public class ScheduleController {
+public class ConsentController {
 }

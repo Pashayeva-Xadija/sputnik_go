@@ -23,7 +23,6 @@ public class PricingRule {
     @Column(nullable = false, length = 64)
     private String name;
 
-
     @Column(precision = 6, scale = 3)
     private BigDecimal surgeMultiplier;
 
