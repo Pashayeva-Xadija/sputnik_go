@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sputnik-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: sputnik-api }
+  template:
+    metadata:
+      labels: { app: sputnik-api }
+    spec:
+      containers:
+        - name: api
+
+          image: sputnik-go:1.0
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - containerPort: 6565
+          env:
+            - { name: SPRING_DATASOURCE_URL,      value: "jdbc:postgresql://postgres:5432/postgres" }
+            - { name: SPRING_DATASOURCE_USERNAME, value: "postgres" }
+            - { name: SPRING_DATASOURCE_PASSWORD, value: "12345" }
+            - { name: SPRING_PROFILES_ACTIVE,     value: "prod" }
+            - { name: SECURITY_JWT_SECRET,        value: "MyJwtSecretKeyMyJwtSecretKeyMyJwtSecretKey12" }
+            - { name: PORT, value: "6565" }
