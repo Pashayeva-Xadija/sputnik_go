@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -21,7 +20,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain chain) throws ServletException, IOException {
 
-
         String header = request.getHeader("Authorization");
         if (header == null || !header.startsWith("Bearer ")) {
             chain.doFilter(request, response);
@@ -29,28 +27,29 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         try {
-
             String token = tokenProvider.resolveToken(request);
             if (token != null && tokenProvider.validate(token)) {
                 var auth = tokenProvider.getAuthentication(token);
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
-            chain.doFilter(request, response);
         } catch (Exception ex) {
-
             SecurityContextHolder.clearContext();
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
         }
-    }
 
+        chain.doFilter(request, response);
+    }
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        String path = request.getRequestURI();
-        return path.startsWith("/api/v1/auth/")
-                || path.startsWith("/api/test/")
-                || path.startsWith("/v3/api-docs")
-                || path.startsWith("/swagger-ui")
-                || path.startsWith("/ws");
+        String p = request.getRequestURI();
+        return p.startsWith("/api/v1/auth/")
+                || p.startsWith("/api/test/")
+                || p.startsWith("/v3/api-docs")
+                || p.startsWith("/swagger-ui")
+                || p.startsWith("/ws");
     }
+}
+
 }
