@@ -35,10 +35,12 @@ public class OpenApiConfig {
 
 
     }
+
     @Bean
     public GroupedOpenApi publicApi() {
         return GroupedOpenApi.builder()
                 .group("public")
+                .packagesToScan("com.sputnikgo.controller") 
                 .pathsToMatch("/health", "/api/v1/auth/**")
                 .build();
     }
