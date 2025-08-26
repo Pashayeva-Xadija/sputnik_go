@@ -20,26 +20,24 @@ public class OpenApiConfig {
         SecurityScheme bearerScheme = new SecurityScheme()
                 .type(SecurityScheme.Type.HTTP)
                 .scheme("bearer")
-                .bearerFormat("JWT")
-                .in(SecurityScheme.In.HEADER)
-                .name("Authorization");
+                .bearerFormat("JWT");
 
         return new OpenAPI()
                 .info(new Info()
                         .title("SputnikGo API")
                         .version("v1")
-                        .description("Backend API for SputnikGo" )
+                        .description("Backend API for SputnikGo")
                         .contact(new Contact().name("SputnikGo Backend").email("backend@sputnikgo.local")))
                 .components(new Components().addSecuritySchemes(bearerSchemeName, bearerScheme))
                 .addSecurityItem(new SecurityRequirement().addList(bearerSchemeName));
 
 
-
     }
+
     @Bean
-    public GroupedOpenApi publicApi() {
+    public GroupedOpenApi publicDir() {
         return GroupedOpenApi.builder()
-                .group("public")
+                .group("public-dir")                        
                 .packagesToScan("com.sputnikgo.controller")
                 .pathsToMatch("/api/**")
                 .build();
