@@ -27,8 +27,10 @@ public class OpenApiConfig {
                 .info(new Info()
                         .title("SputnikGo API")
                         .version("v1")
-                        .description("Backend API for SputnikGo")
+                        .description("Backend API for SputnikGo" +
+                                "Status: server işləyir • Layihə inkişaf mərhələsindədir")
                         .contact(new Contact().name("SputnikGo Backend").email("backend@sputnikgo.local")))
-                .components(new Components().addSecuritySchemes(bearerSchemeName, bearerScheme));
+                .components(new Components().addSecuritySchemes(bearerSchemeName, bearerScheme))
+                .addSecurityItem(new SecurityRequirement().addList(bearerSchemeName));
     }
 }
