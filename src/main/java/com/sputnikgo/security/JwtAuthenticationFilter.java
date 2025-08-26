@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+
 import java.io.IOException;
 
 @Component
@@ -20,11 +21,36 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain chain) throws ServletException, IOException {
 
-        String token = tokenProvider.resolveToken(request);
-        if (token != null && tokenProvider.validate(token)) {
-            var auth = tokenProvider.getAuthentication(token);
-            SecurityContextHolder.getContext().setAuthentication(auth);
+
+        String header = request.getHeader("Authorization");
+        if (header == null || !header.startsWith("Bearer ")) {
+            chain.doFilter(request, response);
+            return;
         }
-        chain.doFilter(request, response);
+
+        try {
+
+            String token = tokenProvider.resolveToken(request);
+            if (token != null && tokenProvider.validate(token)) {
+                var auth = tokenProvider.getAuthentication(token);
+                SecurityContextHolder.getContext().setAuthentication(auth);
+            }
+            chain.doFilter(request, response);
+        } catch (Exception ex) {
+
+            SecurityContextHolder.clearContext();
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        }
+    }
+
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getRequestURI();
+        return path.startsWith("/api/v1/auth/")
+                || path.startsWith("/api/test/")
+                || path.startsWith("/v3/api-docs")
+                || path.startsWith("/swagger-ui")
+                || path.startsWith("/ws");
     }
 }
