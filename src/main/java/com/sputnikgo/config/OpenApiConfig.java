@@ -37,7 +37,7 @@ public class OpenApiConfig {
     @Bean
     public GroupedOpenApi publicDir() {
         return GroupedOpenApi.builder()
-                .group("public-dir")                        
+                .group("public-dir")
                 .packagesToScan("com.sputnikgo.controller")
                 .pathsToMatch("/api/**")
                 .build();
