@@ -30,18 +30,10 @@ public class OpenApiConfig {
                         .version("v1")
                         .description("Backend API for SputnikGo" )
                         .contact(new Contact().name("SputnikGo Backend").email("backend@sputnikgo.local")))
-                .components(new Components().addSecuritySchemes(bearerSchemeName, bearerScheme));
-               // .addSecurityItem(new SecurityRequirement().addList(bearerSchemeName));
+                .components(new Components().addSecuritySchemes(bearerSchemeName, bearerScheme))
+                .addSecurityItem(new SecurityRequirement().addList(bearerSchemeName));
 
 
-    }
 
-    @Bean
-    public GroupedOpenApi publicApi() {
-        return GroupedOpenApi.builder()
-                .group("public")
-                .packagesToScan("com.sputnikgo.controller") 
-                .pathsToMatch("/health", "/api/v1/auth/**")
-                .build();
     }
 }
