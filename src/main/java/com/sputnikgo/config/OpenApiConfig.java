@@ -6,6 +6,7 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.Components;
+import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -31,5 +32,14 @@ public class OpenApiConfig {
                         .contact(new Contact().name("SputnikGo Backend").email("backend@sputnikgo.local")))
                 .components(new Components().addSecuritySchemes(bearerSchemeName, bearerScheme));
                // .addSecurityItem(new SecurityRequirement().addList(bearerSchemeName));
+
+
+    }
+    @Bean
+    public GroupedOpenApi publicApi() {
+        return GroupedOpenApi.builder()
+                .group("public")
+                .pathsToMatch("/health", "/api/v1/auth/**")
+                .build();
     }
 }
