@@ -30,6 +30,5 @@ public class OpenApiConfig {
                         .description("Backend API for SputnikGo")
                         .contact(new Contact().name("SputnikGo Backend").email("backend@sputnikgo.local")))
                 .components(new Components().addSecuritySchemes(bearerSchemeName, bearerScheme));
-               // .addSecurityItem(new SecurityRequirement().addList(bearerSchemeName));
     }
 }
